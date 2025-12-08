@@ -1,0 +1,23 @@
+.create-page 
+{ padding: 10px;
+     max-width: 50%; 
+     margin: 0 auto;
+     background:linear-gradient(135deg, #d1c8ba, #12253e); }
+.create-form { display:flex;
+    border-radius:10px;
+     flex-direction:column;
+      gap:12px; }
+.create-form input, .create-form textarea 
+{ padding:8px;
+    border-radius: 10px;
+    background-color:#12253e;
+     font-size:14px; 
+     color: #ffffff;
+    text-align: center;
+    
+     }
+.create-form button { padding:10px;
+    background :#d1c8ba;
+     border:#12253e;
+      border-radius:6px; 
+      cursor:pointer; }

@@ -1,0 +1,119 @@
+.auth-container {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #d1c8ba,#12253e);
+  display: flex;
+  flex-direction :column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #d7d2cc, #304352);
+}
+
+
+.auth-brand {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #0d1e36; 
+}
+
+
+.account-type input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #fff;
+  margin-right: 6px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #3a3734; /* لون الخط الخارجي */
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+}
+
+.account-type input[type="radio"]:checked::before {
+  content: "";
+  position:absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #417f0a;
+ border-radius: 100%;
+  top: 3px;
+  left: 3px;
+  
+}
+.auth-box {
+     box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.18);
+  background: #ffffff10;
+  backdrop-filter: blur(12px);
+  padding: 40px;
+  width: 350px;
+  border-radius: 16px;
+  text-align: center;
+  color:rgb(26, 45, 96);
+  border: 1px solid #ffffff22;
+  animation: fadeIn 0.8s ease;
+  position: relative;
+  z-index: 1;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.auth-title {
+  font-size: 28px;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-input {
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: #1b1b1b22;
+  color:#eef3ff;
+  font-size: 15px;
+    position: relative;
+  cursor: text !important;
+  z-index: 5;
+}
+
+.auth-input::placeholder {
+  color: white;
+}
+
+.auth-btn {
+  padding: 12px;
+  background: #0d1e36;
+  color: whitesmoke;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.auth-btn:hover {
+    background: #112945;
+}
+
+.auth-switch {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.auth-switch span {
+  color:whitesmoke;
+  cursor: pointer;
+  margin-left: 5px;
+}

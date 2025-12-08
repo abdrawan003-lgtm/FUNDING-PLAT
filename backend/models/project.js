@@ -36,11 +36,8 @@ goal:{type: Number,
     required: true,
   },
 
-user: { type: mongoose.Schema.Types.ObjectId, ref: "User", /*required: true*/} }, // <-- هذا الحقل مهم
+user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true} }, // <-- هذا الحقل مهم
  {timestamps:true});
-
-
-
 
 
 const Project = mongoose.model("Project", projectSchema);

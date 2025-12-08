@@ -1,41 +1,24 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
-// User Schema
 const userSchema = new mongoose.Schema(
   {
-    username: { 
-      type: String, 
-      required: true, 
-      unique: true 
-    },
-
-    email: { 
-      type: String, 
-      required: true, 
-      unique: true 
-    },
-
-    password: { 
-      type: String, 
-      required: true 
-    }
+    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    accountType: { type: String, enum: ["supporter", "requester"], required: true },
   },
-  {
-    timestamps: true // يضيف createdAt و updatedAt
-  }
+  { timestamps: true }
 );
 
-// Hash password before saving لمطابقة كلمة المرور قبل الحفظ
 userSchema.pre("save", async function(next) {
-  if (!this.isModified("password")) return next(); // إذا ما تغيرت الباسوورد لا تعمل hash
+  if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
-// Method to compare passwords مقارنة كلمة المرور
-userSchema.methods.matchPassword = async function(password) {
-  return await bcrypt.compare(password, this.password);
+userSchema.methods.matchPassword = async function(enteredpassword) {
+  return await bcrypt.compare(enteredpassword, this.password);
 };
 
 const User = mongoose.model("User", userSchema);

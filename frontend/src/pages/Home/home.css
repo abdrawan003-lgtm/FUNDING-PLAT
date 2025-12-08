@@ -1,0 +1,41 @@
+.home-page {
+  margin:0px;
+  padding:0px;
+  background:linear-gradient(135deg, #d1c8ba, #12253e);
+display: grid;
+  min-height: 100vh; 
+
+}
+
+.home-container{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items:center;
+  font-family: "Poppins", sans-serif;
+
+}
+.home-header {
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.home-header button {
+ background-color:  #0d1e36;
+
+}
+
+
+.home-header h1 {
+  margin: 10px;
+  color:  #3a3734ff;
+}
+
+.projects-grid {
+  display:grid;
+  margin: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem 3rem;
+}

@@ -1,0 +1,39 @@
+.project-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: #fff;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.project-info {
+  padding: 1rem;
+}
+
+.project-info h3 {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.project-info p {
+  margin: 0.2rem 0;
+  color: #555;
+}
+
+.goal {
+  font-weight: bold;
+  color: #f3dd38;
+}

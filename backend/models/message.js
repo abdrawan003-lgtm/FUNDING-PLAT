@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-
 const messageSchema = new mongoose.Schema({
+  chatId: { type: mongoose.Schema.Types.ObjectId, ref: "Chat" }, // optional
   sender: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  receiver: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  text: { type: String, required: true },
-  read: { type: Boolean, default: false }
+  recipients: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }], // users in the conversation
+  content: { type: String, default: "" },
+  attachments: [{ url: String, mime: String }], // صور/ملفات
+  readBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], // read receipts
+  createdAt: { type: Date, default: Date.now },
 }, { timestamps: true });
-
-const Message = mongoose.model("Message", messageSchema);
-export default Message;
+export default mongoose.model("Message", messageSchema);

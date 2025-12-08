@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7c6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav.navbar {
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  background-color: #111e2e;
+  color: rgb(22, 39, 65);
+}
+
+nav.navbar a {
+  color: rgb(12, 15, 54);
+  font-weight: bold;
+}

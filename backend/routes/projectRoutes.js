@@ -27,8 +27,7 @@ router.post("/", protect, async (req, res) => {
       location,
       user: req.userId // ربط المشروع بالمستخدم الحالي من Token
     });
-
-    const created = await project.save();
+     await project.save();
     res.status(201).json(created);
   } catch (err) {
     console.error(err);
@@ -107,6 +106,15 @@ router.put("/:id", protect, async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
+
+router.get("/my-projects", protect, async (req, res) => {
+  try {
+    const projects = await Project.find({ owner: req.user._id });
+    res.json(projects);
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
   }
 });
 

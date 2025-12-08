@@ -1,0 +1,26 @@
+.profile-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 25px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.profile-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #0d1e36;
+}
+
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}

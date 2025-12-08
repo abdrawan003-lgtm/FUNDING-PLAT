@@ -4,56 +4,51 @@ import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
-
-// إنشاء Token
+// Generate JWT
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "1d",
-  });
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 };
-//يRoutes محمية ما بيدخل عليها غير المستخدم يلي معه Token صحيح.
-router.get("/profile", (req, res) => {
-  res.json({ message: "Welcome to your profile!", userId: req.userId });
-});
 
-// تسجيل مستخدم جديد
+// Register
 router.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
-
+  const { username, email, password, accountType } = req.body;
   try {
-    const userExists = await User.findOne({ email });
-    if (userExists)
-      return res.status(400).json({ message: "User already exists" });
+    if (!username || !email || !password || !accountType) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
 
-    const user = new User({ username, email, password });
+    const userExists = await User.findOne({ email });
+    if (userExists) return res.status(400).json({ message: "User already exists" });
+
+    const user = new User({ username, email, password, accountType });
     await user.save();
 
+    const token = generateToken(user._id);
+
     res.status(201).json({
-      message: "User registered successfully",
+      token,
+      username: user.username,
       userId: user._id,
+      accountType: user.accountType,
     });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error("Register error:", err);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
-router.get("/all", async (req, res) => {
-  const users = await User.find();
-  res.json(users);
-});
-
-// تسجيل الدخول
+// Login
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-
   try {
+    if (!email || !password)
+      return res.status(400).json({ message: "Email and password required" });
+
     const user = await User.findOne({ email });
-    if (!user)
-      return res.status(400).json({ message: "Invalid email or password" });
+    if (!user) return res.status(400).json({ message: "Invalid email or password" });
 
     const isMatch = await user.matchPassword(password);
-    if (!isMatch)
-      return res.status(400).json({ message: "Invalid email or password" });
+    if (!isMatch) return res.status(400).json({ message: "Invalid email or password" });
 
     const token = generateToken(user._id);
 
@@ -61,9 +56,11 @@ router.post("/login", async (req, res) => {
       token,
       username: user.username,
       userId: user._id,
+      accountType: user.accountType,
     });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error("Login error:", err);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
