@@ -1,23 +1,55 @@
 .create-page 
-{ padding: 10px;
-     max-width: 50%; 
-     margin: 0 auto;
-     background:linear-gradient(135deg, #d1c8ba, #12253e); }
+{  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg,#141e30,#243b55);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+   padding: 12px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  color:#d3bb9cff;
+  font-size: 15px;
+  position: relative;
+  cursor: text !important;
+  z-index: 5;
+} 
 .create-form { display:flex;
-    border-radius:10px;
-     flex-direction:column;
-      gap:12px; }
+ box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.18);
+  background: #7b756aeb;
+  backdrop-filter: blur(12px);
+  padding: 40px;
+  width: 350px;
+  border-radius: 16px;
+ border: 2px solid #989595eb;
+ flex-direction:column;
+ gap:12px; 
+text-align: center;
+  animation: fadeIn 0.8s ease;
+  position: relative;
+  z-index: 1;}
+
 .create-form input, .create-form textarea 
-{ padding:8px;
-    border-radius: 10px;
-    background-color:#12253e;
-     font-size:14px; 
-     color: #ffffff;
-    text-align: center;
-    
+{  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: #eef3ff;
+  color:#070707;
+  font-size: 15px;
+
      }
-.create-form button { padding:10px;
-    background :#d1c8ba;
-     border:#12253e;
-      border-radius:6px; 
-      cursor:pointer; }
+    
+.create-form button { padding: 12px;
+  background: #0d1e36;
+  color: whitesmoke;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: 0.3s; }
+

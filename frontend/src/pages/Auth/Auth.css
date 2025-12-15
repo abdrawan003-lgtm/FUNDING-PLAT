@@ -1,13 +1,12 @@
 .auth-container {
   width: 100%;
   height: 100vh;
-  background: linear-gradient(135deg, #d1c8ba,#12253e);
   display: flex;
   flex-direction :column;
   justify-content: center;
   align-items: center;
   font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #d7d2cc, #304352);
+  background: linear-gradient(135deg,#141e30,#243b55);
 }
 
 
@@ -27,7 +26,7 @@
   margin-right: 6px;
   width: 18px;
   height: 18px;
-  border: 2px solid #3a3734; /* لون الخط الخارجي */
+  border: 2px solid #0a0a0a; /* لون الخط الخارجي */
   border-radius: 50%;
   cursor: pointer;
   position: relative;
@@ -46,14 +45,14 @@
 }
 .auth-box {
      box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.18);
-  background: #ffffff10;
+  background: #7b756aeb;
   backdrop-filter: blur(12px);
   padding: 40px;
   width: 350px;
   border-radius: 16px;
   text-align: center;
-  color:rgb(26, 45, 96);
-  border: 1px solid #ffffff22;
+  color:#0d1e36;
+  border: 2px solid #989595eb;
   animation: fadeIn 0.8s ease;
   position: relative;
   z-index: 1;
@@ -67,12 +66,14 @@
   font-size: 28px;
   margin-bottom: 25px;
   font-weight: 600;
+  color:#fff;
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
+ 
 }
 
 .auth-input {
@@ -80,16 +81,16 @@
   border-radius: 12px;
   border: none;
   outline: none;
-  background: #1b1b1b22;
-  color:#eef3ff;
+  background: #eef3ff;
+  color:#070707;
   font-size: 15px;
-    position: relative;
+  position: relative;
   cursor: text !important;
   z-index: 5;
 }
 
 .auth-input::placeholder {
-  color: white;
+  color: rgb(7, 7, 7);
 }
 
 .auth-btn {

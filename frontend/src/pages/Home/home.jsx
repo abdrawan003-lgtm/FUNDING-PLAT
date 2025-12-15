@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div className="home-page">
       <div className="home-header">
-        <h1>Projects</h1>
+        <h1 > All Projects</h1>
 
         {/* زر الانتقال إلى صفحة إضافة مشروع */}
         <Button text="Add Project" onClick={goToCreate} />

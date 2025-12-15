@@ -48,31 +48,33 @@ console.log("USER FROM CONTEXT:", USER);
     }
   };
 
-  return (
+  return ( <div className="allpage">
     <div className="create-page">
       <h2>Create New Project</h2>
 
       <form className="create-form" onSubmit={handleSubmit}>
-        <input name="title" placeholder="Project title" value={form.title} onChange={handleChange} />
+        <input name="title" placeholder="Project title" value={form.title} onChange={handleChange}className="auth-input"/>
 
-        <input name="image" placeholder="Image URL (optional)" value={form.image} onChange={handleChange} />
+        <input name="image" placeholder="Image URL" value={form.image} onChange={handleChange} className="auth-input" />
 
         <textarea
           name="description"
           placeholder="Project description"
-          rows={6}
+          rows={4}
           value={form.description}
           onChange={handleChange}
+          className="auth-input"
         />
 
-        <input name="goal" type="number" placeholder="Funding goal (e.g., 1000)" value={form.goal} onChange={handleChange} />
-        <input name="owner"  placeholder="owner's name" value={form.owner} onChange={handleChange} />
-        <input name="Location" placeholder="Location" value={form.Location} onChange={handleChange} />
+        <input name="goal" type="number" placeholder="Funding goal (e.g., 1000)" value={form.goal} onChange={handleChange}className="auth-input" />
+        <input name="owner"  placeholder="owner's name" value={form.owner} onChange={handleChange}className="auth-input" />
+        <input name="Location" placeholder="Location" value={form.Location} onChange={handleChange}className="auth-input" />
 
         <button type="submit" disabled={loading}>
           {loading ? "Creating..." : "Create Project"}
         </button>
       </form>
+    </div>
     </div>
   );
 }

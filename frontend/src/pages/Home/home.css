@@ -1,41 +1,52 @@
 .home-page {
-  margin:0px;
-  padding:0px;
-  background:linear-gradient(135deg, #d1c8ba, #12253e);
-display: grid;
-  min-height: 100vh; 
-
-}
-
-.home-container{
+  padding: 20px;
   width: 100%;
-  height: 100%;
-  display: grid;
-  align-items:center;
-  font-family: "Poppins", sans-serif;
 
+   background: linear-gradient(135deg,#141e30,#243b55);
 }
+
+/* العنوان مع زر إضافة مشروع */
 .home-header {
-  display:flex;
-  justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 25px;
+  padding: 30px;
 }
-
-.home-header button {
- background-color:  #0d1e36;
-
-}
-
 
 .home-header h1 {
-  margin: 10px;
-  color:  #3a3734ff;
+  font-size: 26px;
+  font-weight: bold;
+  color:#d3bb9cff;
 }
 
+/* الحاوية الرئيسية */
+.home-container {
+  margin: 30px;
+  background-color:#7b756aeb;
+  border-radius: 30px;
+justify-content: center;
+}
+
+/* شبكة المشاريع */
 .projects-grid {
-  display:grid;
-  margin: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem 3rem;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fil);
+  gap: 40px;
+  padding:30px;
+  width: 100%;
+
+
+}
+
+/* جعل صفحة هوم متجاوبة */
+@media(max-width: 100%){
+  .home-page {
+    padding: 20px;
+  }
+
+  .home-header h1 {
+    font-size: 20px;
+  }
 }

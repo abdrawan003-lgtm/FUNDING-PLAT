@@ -57,7 +57,7 @@ function AuthPage() {
 
   return (
     <div className="auth-container">
-      <h1 style={{ marginBottom: "10px", color: "#3a3734ff" }}>GetChance</h1>
+      <h1 style={{ marginBottom: "40px", color: "#d3bb9cff" }}>GetChance</h1>
       <div className="auth-box">
         <h2 className="auth-title">{mode === "login" ? "Login" : "Create an Account"}</h2>
 
@@ -112,7 +112,7 @@ function AuthPage() {
                   checked={accountType === "requester"}
                   onChange={(e) => setAccountType(e.target.value)}
                 />
-                Project Owner
+                 Owner
               </label>
             </div>
           )}

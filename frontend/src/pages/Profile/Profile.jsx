@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+
 import axios from "axios";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import "./Profile.css"; // بعد فصل الـ CSS
 
 export default function Profile() {
+
   const [user, setUser] = useState(null);
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -60,6 +62,10 @@ export default function Profile() {
           ))
         )}
       </div>
+       <div className="profile-page">
+      <h1>Profile</h1>
     </div>
+    </div>
+    
   );
 }
