@@ -1,0 +1,238 @@
+.project-details {
+  margin: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #1c314e, #243b55);
+  min-height: 100vh;
+}
+
+.project-details-image {
+  margin-top: 40px;
+  max-width: 650px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.rigth_side {
+  width: 100%;
+  max-width: 650px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.title {
+  text-align: center;
+  margin-top: 0;
+  font-size: 30px;
+  margin-bottom: 15px;
+  color: #0d0d0d;
+}
+
+.detail-label {
+  font-weight: bold;
+  color: #272829;
+}
+
+.detail-value3{
+  color: aquamarine;
+}
+.detail-value {
+  color: #212529;
+  margin-left: 5px;
+}
+
+.status{
+  color: #fff;
+  background-color: #464e55;
+}
+.owner-name {
+  color:  #0d1e36;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.owner-name:hover {
+  text-decoration: underline;
+}
+
+.project-actions {
+  display: flex;
+   /* توسيط الأزرار */
+  gap: 10px; 
+  margin-top: 15px;
+  z-index: 10; /* تتأكد أن الأزرار فوق الصورة */
+}
+
+.project-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  gap: 90px;
+}
+
+/* زر التعديل */
+.project-actions button:first-child {
+  background-color: #464e55;
+  color: #fff;
+}
+
+.project-actions button:first-child:hover {
+  background-color: #114602;
+}
+
+/* زر الحذف */
+.project-actions button:last-child {
+  background-color:  #464e55;
+  color: #e4e1e1;
+}
+
+.project-actions button:last-child:hover {
+  background-color: #a71d2a;
+}
+
+.contact-info{
+  color: #0e0e0e;
+
+  font-weight: 700;
+ 
+}
+
+/* استجابة الموبايل */
+@media (max-width: 600px) {
+  .project-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .project-actions button {
+    width: 100%;
+  }
+}
+
+.chat-btn {
+  position: fixed;
+  bottom: 90px;
+  right: 50px;
+  font-size: 26px;
+  padding: 12px 16px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: #0d1e36;
+  color: white;
+}
+
+.chat-box {
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  width: 320px;
+  max-height: 420px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header {
+  background: #0d1e36;
+  color: white;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+}
+
+.chat-message.me {
+  text-align: right;
+}
+
+.chat-time {
+  font-size: 11px;
+  color: gray;
+}
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.chat-input input {
+  flex: 1;
+  border: none;
+  padding: 8px;
+  border-radius: 0 0 0 10px;
+}
+
+.chat-input button {
+  border: none;
+  background-color:#0d1e36;
+  color: white;
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 0 0 10px 0;
+}
+
+@media (max-width: 768px) {
+  .rigth_side {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .project-actions button {
+    flex: 1 1 45%;
+    margin-right: 5px;
+  }
+
+  .project-details-image {
+    max-width: 100%;
+  }
+
+  .chat-box {
+    width: 90%;
+    right: 5%;
+    bottom: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .detail-label {
+    font-size: 14px;
+  }
+
+  .detail-value {
+    font-size: 14px;
+  }
+
+  .chat-btn {
+    font-size: 22px;
+    padding: 10px 14px;
+  }
+}

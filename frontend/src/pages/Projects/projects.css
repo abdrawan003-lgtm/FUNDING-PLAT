@@ -1,0 +1,220 @@
+/* ===============================
+   RESET + FIX CHROME
+================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, #0b1220, #0f172a);
+  color: #e6edf6;
+  overflow-x: hidden;
+}
+
+/* ===============================
+   ROOT VARIABLES (THEME)
+================================ */
+:root {
+  --bg-main: #0b1220;
+  --bg-page: #0f1b2d;
+  --bg-card: #121c2b;
+  --bg-soft: #1e293b;
+
+  --primary: #4cc9f0;
+  --primary-soft: #4895ef;
+
+  --text-main: #e6edf6;
+  --text-muted: #9aa4b2;
+
+  --border-soft: rgba(255,255,255,0.07);
+}
+
+/* ===============================
+   PAGE
+================================ */
+.project-page {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px;
+  min-height: 100svh; /* mobile chrome fix */
+background: linear-gradient(135deg, #1c314e, #243b55);
+  border-radius: 16px;
+  
+}
+
+/* ===============================
+   HEADER
+================================ */
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-radius: 16px;
+ background:  linear-gradient(135deg, #1c314e, #243b55);
+  box-shadow: 0 12px 28px rgba(165, 163, 163, 0.45);
+  margin-bottom: 24px;
+}
+
+.project-header h1 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* ===============================
+   FILTERS CONTAINER
+================================ */
+.filters-box {
+  background:  linear-gradient(135deg, #1c314e, #243b55);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 28px;
+  box-shadow: 0 12px 28px rgba(165, 163, 163, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ===============================
+   FILTER GROUP
+================================ */
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.filter-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-main);
+}
+
+/* ===============================
+   FILTER BUTTONS
+================================ */
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ===============================
+   FILTER BUTTON
+================================ */
+.filter-btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-soft);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.filter-btn:hover {
+  color: var(--text-main);
+  border-color: var(--primary);
+  background: rgba(76,201,240,0.08);
+  transform: translateY(-1px);
+}
+
+.filter-btn.active {
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-soft)
+  );
+  color: #020617;
+  border-color: transparent;
+  box-shadow: 0 6px 18px rgba(76,201,240,0.45);
+}
+
+/* ===============================
+   PROJECT CONTAINER
+================================ */
+.project-container {
+ background: linear-gradient(135deg, #1c314e, #243b55);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 12px 28px rgba(165, 163, 163, 0.45);
+}
+
+/* ===============================
+   PROJECT GRID
+================================ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* ===============================
+   EMPTY STATE
+================================ */
+.project-container p {
+  text-align: center;
+  padding: 32px 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .project-header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .project-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .filters-box {
+    padding: 16px;
+  }
+
+  .filter-btn {
+    padding: 7px 14px;
+    font-size: 0.75rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-page {
+    padding: 12px;
+  }
+
+  .project-header {
+    padding: 16px;
+  }
+
+  .filters-box,
+  .project-container {
+    padding: 16px;
+  }
+}

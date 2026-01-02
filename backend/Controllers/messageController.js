@@ -1,33 +1,46 @@
 import Message from "../models/message.js";
-import Chat from "../models/chat.js";
+import Project from "../models/project.js";
 
-export const sendMessage = async (req, res) => {
+export const sendProjectMessage = async (req, res) => {
   try {
-    const { chatId, content, recipients } = req.body;
+    const { projectId, content } = req.body;
+
+    if (!content?.trim()) {
+      return res.status(400).json({ message: "Message is empty" });
+    }
+
+    const project = await Project.findById(projectId);
+    if (!project) {
+      return res.status(404).json({ message: "Project not found" });
+    }
+
+    // 🔥 هون التصحيح المهم
+    const senderId = req.user._id.toString();
+
+    const receiver =
+      senderId === project.user.toString()
+        ? project.lastInterestedUser
+        : project.user;
+
+    if (!receiver) {
+      return res.status(400).json({ message: "No chat partner found" });
+    }
 
     const message = await Message.create({
-      chatId,
-      sender: req.user._id,
-      recipients,
-      content
+      project: projectId,
+      sender: senderId,
+      receiver,
+      content,
     });
 
-    // التحديث داخل السجل الأخير للمحادثة
-    await Chat.findByIdAndUpdate(chatId, { lastMessage: message._id });
+    const populatedMessage = await message.populate(
+      "sender",
+      "username"
+    );
 
-    res.status(201).json(message);
+    res.status(201).json(populatedMessage);
   } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
-
-export const getMessages = async (req, res) => {
-  try {
-    const messages = await Message.find({ chatId: req.params.chatId })
-      .populate("sender", "username email");
-
-    res.json(messages);
-  } catch (err) {
+    console.error("SEND MESSAGE ERROR:", err);
     res.status(500).json({ message: err.message });
   }
 };

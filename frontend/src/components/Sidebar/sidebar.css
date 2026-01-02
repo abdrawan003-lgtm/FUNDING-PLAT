@@ -1,0 +1,62 @@
+/* overlay يغطي كل الصفحة */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+/* السايد بار */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0; 
+  width: 260px;
+  height: 100%;
+  background: linear-gradient(135deg, #1c314e, #243b55);
+  padding: 20px;
+  transform: translateX(-100%); /* مخفي افتراضياً */
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* السايد بار مفتوح */
+.sidebar.open {
+  transform: translateX(0);
+}
+
+
+/* القائمة العمودية */
+.menu {
+  padding: 30px;
+  display: flex;
+  flex-direction: column; /* العناصر تحت بعض */
+  gap: 20px;
+}
+
+/* روابط السايد بار */
+.link {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* مسافة بين الإيموجي والنص */
+  padding: 12px 15px;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+/* عند hover */
+.link:hover {
+  background: #7b756aeb;
+}
+
+/* الرابط النشط */
+.link.active {
+  background: #7b756aeb;
+  font-weight: bold;
+}

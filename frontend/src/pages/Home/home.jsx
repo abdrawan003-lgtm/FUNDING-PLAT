@@ -1,48 +1,29 @@
+"use client"
+
 import React from "react";
-import useProjects from "../../hooks/useProjects";
-import ProjectCard from "../../components/ProjectCard/ProjectCard";
-import Button from "../../components/Button/Button";
-import "./Home.css";
 import { useNavigate } from "react-router-dom";
+import "./home.css";
 
-export default function Home() {
+
+export default function HomePage() {
   const navigate = useNavigate();
-  const { projects, loading, error } = useProjects();
-
-  // الانتقال لصفحة إضافة مشروع CreateProject
-  const goToCreate = () => navigate("/create-project");
-
-  // الانتقال إلى صفحة تفاصيل المشروع
-  const goToProject = (id) => navigate(`/project/${id}`);
-
-  if (loading) return <p>Loading projects...</p>;
-  if (error) return <p>Error loading projects!</p>;
 
   return (
     <div className="home-page">
-      <div className="home-header">
-        <h1 > All Projects</h1>
+      {/* النجوم */}
+      <div className="stars"></div>
+      <div className="stars2"></div>
+      <div className="stars3"></div>
 
-        {/* زر الانتقال إلى صفحة إضافة مشروع */}
-        <Button text="Add Project" onClick={goToCreate} />
-      </div>
-
-      <div className="home-container">
-        {projects.length === 0 ? (
-          <p>No projects found.</p>
-        ) : (
-          <div className="projects-grid">
-            {projects.map((project) => (
-              <div
-                key={project._id}
-                style={{ cursor: "pointer" }}
-                onClick={() => goToProject(project._id)}
-              >
-                <ProjectCard project={project} />
-              </div>
-            ))}
-          </div>
-        )}
+      <div className="home-content">
+        {/* <div className="logo-container"> */}
+          {/* <img src={logo} alt="Logo"  className="home-logo" /> */}
+        {/* </div> */}
+        <h1 className="home-slogan">Get your star ⭐</h1>
+        <p className="home-subtext">Start your journey and shine with us!</p>
+        <button className="home-btn" onClick={() => navigate("/AuthPage")}>
+          Get Started
+        </button>
       </div>
     </div>
   );

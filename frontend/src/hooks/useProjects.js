@@ -10,13 +10,23 @@ export default function useProjects() {
     const fetchProjects = async () => {
       try {
         const data = await getAllProjects();
-        setProjects(data);
+
+        // ✅ حماية من اختلاف شكل الداتا
+        if (Array.isArray(data)) {
+          setProjects(data);
+        } else if (data?.projects && Array.isArray(data.projects)) {
+          setProjects(data.projects);
+        } else {
+          setProjects([]);
+        }
       } catch (err) {
+        console.error("Fetch projects error:", err);
         setError(err);
       } finally {
         setLoading(false);
       }
     };
+
     fetchProjects();
   }, []);
 

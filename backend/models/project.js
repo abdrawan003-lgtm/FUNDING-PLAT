@@ -1,44 +1,37 @@
 import mongoose from "mongoose";
 
-
-const projectSchema = mongoose.Schema({
-title:{ type:String,
-        required: true,},   
-description:{type: String, required:true,},
-goal:{type: Number,
-      required:true ,},
-       currentAmount: {
-    type: Number,
-    default: 0,
-  },
+const projectSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  goal: { type: Number, required: true },
+  lastInterestedUser: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   image: {
-    type: String, // ممكن يكون رابط للصورة
-    required: true,
+    data: Buffer,      // البيانات الثنائية للصورة
+    contentType: String
   },
-   createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  category: {
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    }
+  ],
+  notes: { type: String, default: "" }, // ← حقل الملاحظات
+  createdAt: { type: Date, default: Date.now },
+  category: { type: String },
+  deadline: { type: Date },
+  location: { type: String, required: true },
+  status: {
     type: String,
-    required: true,
+    enum: ["open", "in_discussion", "funded", "closed"],
+    default: "open"
   },
-  deadline: {
-    type: Date,
-    required: true,
-  },
-  progress: {
-    type: Number,
-    default: 0, // نسبة مئوية 0-100
-  },
-  location: {
-    type: String,
-    required: true,
-  },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" } // ← صاحب المشروع
+}, { timestamps: true });
 
-user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true} }, // <-- هذا الحقل مهم
- {timestamps:true});
-
+// Indexes
+projectSchema.index({ user: 1 });
+projectSchema.index({ category: 1 });
+projectSchema.index({ createdAt: -1 });
 
 const Project = mongoose.model("Project", projectSchema);
 export default Project;

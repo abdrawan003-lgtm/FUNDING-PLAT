@@ -1,19 +1,64 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* ===============================
+   RESET
+================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+/* ===============================
+   BODY = BACKGROUND OWNER
+================================ */
+html, body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #1c314e, #243b55);
+  color: #e5e7eb;
+  overflow-x: hidden;
+}
+
+/* ===============================
+   ROOT = CONTAINER ONLY
+================================ */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0;          /* ❗ مهم */
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===============================
+   OPTIONAL APP WRAPPER
+================================ */
+.app-wrapper {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* ===============================
+   LOGO (unchanged)
+================================ */
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }

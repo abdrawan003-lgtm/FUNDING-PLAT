@@ -1,117 +1,125 @@
 import express from "express";
-import { Server } from "socket.io";
 import http from "http";
+import { Server } from "socket.io";
 import jwt from "jsonwebtoken";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
-import profileRoutes from "./routes/profileRoutes.js";
 
 // Routes
 import projectRoutes from "./routes/projectRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
-
+import profileRoutes from "./routes/profileRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import notificationsRoutes from "./routes/notificationRoutes.js";
 // Models
 import Message from "./models/message.js";
-import Chat from "./models/chat.js";
 import Project from "./models/project.js";
 
 dotenv.config();
-const app = express();
 
-// DB connection
+const app = express();
 connectDB();
 
-// Middleware
+/* ================= MIDDLEWARE ================= */
 app.use(cors({ origin: "*" }));
 app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 
-// Routes
+/* ================= ROUTES ================= */
 app.use("/api/projects", projectRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/chats", chatRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/profile", profileRoutes);
+app.use("/api/notifications",notificationsRoutes);
 
-// HTTP server
+/* ================= SERVER ================= */
 const server = http.createServer(app);
 
-// Socket.IO
+/* ================= SOCKET ================= */
 const io = new Server(server, {
-  cors: { origin: "*", methods: ["GET", "POST"] },
+  cors: { origin: "*" },
 });
 
-// Auth for socket
+/* ========== SOCKET AUTH ========== */
 io.use((socket, next) => {
   try {
-    const token = socket.handshake.auth?.token ||
+    const token =
+      socket.handshake.auth?.token ||
       socket.handshake.headers?.authorization?.split(" ")[1];
 
-    if (!token) return next(new Error("Auth Failed: No Token"));
+    if (!token) return next(new Error("No token"));
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     socket.userId = decoded.id;
     next();
-
   } catch (err) {
-    next(new Error("Auth Failed: Invalid Token"));
+    next(new Error("Invalid token"));
   }
 });
 
-// Socket.IO events
+/* ========== SOCKET EVENTS ========== */
 io.on("connection", (socket) => {
-  console.log("🟢 User connected:", socket.userId);
+  console.log("🟢 Connected:", socket.userId);
 
-  // Join project chat
-  socket.on("joinProject", async (projectId) => {
-    try {
-      // إنشاء أو جلب شات المشروع
-      let chat = await Chat.findOne({ _id: projectId });
-      if (!chat) {
-        chat = await Chat.create({
-          _id: projectId,
-          name: null,
-          isGroup: true,
-          members: [socket.userId],
-          admins: [socket.userId]
-        });
-      }
+  /* ===== JOIN PROJECT CHAT ===== */
+  socket.on("joinProjectChat", ({ projectId, otherUserId }) => {
+    if (!projectId || !otherUserId) return;
 
-      socket.join(`chat_${chat._id}`);
-      console.log(`User ${socket.userId} joined room chat_${chat._id}`);
-    } catch (err) {
-      console.log("Join project error:", err);
-    }
+    const roomId = `${projectId}_${[socket.userId, otherUserId]
+      .sort()
+      .join("_")}`;
+
+    socket.join(roomId);
+    console.log(`👥 User ${socket.userId} joined room ${roomId}`);
   });
 
-  // إرسال رسالة
+  /* ===== SEND PROJECT MESSAGE ===== */
   socket.on("sendProjectMessage", async ({ projectId, content }) => {
     try {
+      if (!content?.trim()) return;
+
+      const project = await Project.findById(projectId);
+      if (!project) return;
+
+      const receiver =
+        socket.userId.toString() === project.user.toString()
+          ? project.lastInterestedUser
+          : project.user;
+
+      if (!receiver) return console.log("No receiver set for project");
+      const roomId = `${projectId}_${[socket.userId, receiver]
+        .sort()
+        .join("_")}`;
+
+        console.log("projectId:", projectId, "socket.userId:", socket.userId, "receiver:", receiver);
       const message = await Message.create({
-        chatId: projectId,
+        project: projectId,
         sender: socket.userId,
-        recipients: [], // لاحقاً تضيف أعضاء المشروع
+        receiver,
         content,
       });
 
-      await Chat.findByIdAndUpdate(projectId, { lastMessage: message._id });
+      const populatedMessage = await Message.findById(message._id)
+        .populate("sender", "username")
+        .populate("receiver", "username");
 
-      io.to(`chat_${projectId}`).emit("newProjectMessage", message);
-
+      io.to(roomId).emit("newProjectMessage", populatedMessage);
     } catch (err) {
-      console.log("Error sending msg:", err);
-      socket.emit("error", "Message send failed");
+      console.log("❌ Send message error:", err.message);
     }
   });
 
   socket.on("disconnect", () => {
-    console.log("🔴 User disconnected:", socket.userId);
+    console.log("🔴 Disconnected:", socket.userId);
   });
 });
 
-// تشغيل السيرفر
+/* ================= RUN ================= */
 const PORT = process.env.PORT || 5005;
 server.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);

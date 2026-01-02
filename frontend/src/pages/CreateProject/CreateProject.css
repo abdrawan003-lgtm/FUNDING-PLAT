@@ -1,31 +1,52 @@
+/* CreateProject.css */
+.allpage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f5f5f5;
+  
+}
+
+create-form {
+  display: flex;
+  flex-direction: column; /* كل حقل عمودي */
+  gap: 15px; /* مسافة بين الحقول */
+  
+
+}
+
 .create-page 
 {  width: 100%;
-  height: 100vh;
+  height: 100vh!important;
   justify-content: center;
   align-items: center;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg,#141e30,#243b55);
+ background: linear-gradient(135deg, #1c314e, #243b55);
+ box-shadow: 0 12px 28px rgba(165, 163, 163, 0.45);
   display: flex;
   flex-direction: column;
   gap: 10px;
    padding: 12px;
-  border-radius: 12px;
+ 
   border: none;
   outline: none;
-  color:#d3bb9cff;
+  color:#ddd;
   font-size: 15px;
   position: relative;
   cursor: text !important;
   z-index: 5;
 } 
 .create-form { display:flex;
- box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.18);
-  background: #7b756aeb;
+ box-shadow: 0 12px 28px rgba(165, 163, 163, 0.45);
+   background: #7a7d7e;
+   
   backdrop-filter: blur(12px);
   padding: 40px;
   width: 350px;
   border-radius: 16px;
- border: 2px solid #989595eb;
+ border: 2px solid ;
+ box-shadow:  0 12px 28px rgba(165, 163, 163, 0.45);
  flex-direction:column;
  gap:12px; 
 text-align: center;
@@ -38,9 +59,12 @@ text-align: center;
   border-radius: 12px;
   border: none;
   outline: none;
-  background: #eef3ff;
-  color:#070707;
+  background:#3c3f42;
+   border-color: var(--primary);
+  color:#f9f9f9;
   font-size: 15px;
+ 
+   
 
      }
     

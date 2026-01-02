@@ -1,52 +1,125 @@
+/* الصفحة الرئيسية */
 .home-page {
-  padding: 20px;
+    padding: 1rem;
+    margin-top: 10rem;
+  position: relative;
   width: 100%;
-
-   background: linear-gradient(135deg,#141e30,#243b55);
-}
-
-/* العنوان مع زر إضافة مشروع */
-.home-header {
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg,#1c314e,#243b55);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-  padding: 30px;
-}
-
-.home-header h1 {
-  font-size: 26px;
-  font-weight: bold;
-  color:#d3bb9cff;
-}
-
-/* الحاوية الرئيسية */
-.home-container {
-  margin: 30px;
-  background-color:#7b756aeb;
-  border-radius: 30px;
-justify-content: center;
-}
-
-/* شبكة المشاريع */
-.projects-grid {
-  display: grid;
   justify-content: center;
-  grid-template-columns: repeat(auto-fil);
-  gap: 40px;
-  padding:30px;
-  width: 100%;
-
-
+  align-items: center;
+  text-align: center;
+  color: white;
 }
 
-/* جعل صفحة هوم متجاوبة */
-@media(max-width: 100%){
-  .home-page {
-    padding: 20px;
-  }
+/* النجوم */
+.stars, .stars2, .stars3 {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: transparent;
+  z-index: 0;
+}
 
-  .home-header h1 {
-    font-size: 20px;
-  }
+.stars::after,
+.stars2::after,
+.stars3::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  box-shadow: 
+    100px 200px white, 400px 300px white, 600px 100px white, 
+    900px 400px white, 1200px 600px white, 1500px 200px white;
+  animation: starMove 50s linear infinite;
+}
+
+.stars2::after {
+  width: 1.5px;
+  height: 1.5px;
+  box-shadow:
+    200px 400px white, 500px 100px white, 800px 200px white,
+    1100px 500px white, 1400px 100px white, 1700px 300px white;
+  animation: starMove 100s linear infinite;
+}
+
+.stars3::after {
+  width: 1px;
+  height: 1px;
+  box-shadow:
+    300px 500px white, 700px 400px white, 1000px 150px white,
+    1300px 450px white, 1600px 250px white, 1900px 350px white;
+  animation: starMove 150s linear infinite;
+}
+
+@keyframes starMove {
+  0% { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(-1000px) translateX(-500px); }
+}
+
+/* المحتوى فوق الخلفية */
+.home-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-container {
+  animation: fadeInDown 1s ease forwards;
+}
+
+.home-logo {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.home-slogan {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.5s forwards;
+}
+
+.home-subtext {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 1s forwards;
+  color: #d3bb9cff;
+}
+
+.home-btn {
+  padding: 14px 40px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+   background: #4a4848;
+  color: #090434c3;
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeInUp 1s ease 1.5s forwards;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.home-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(137, 121, 21, 0.6);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }

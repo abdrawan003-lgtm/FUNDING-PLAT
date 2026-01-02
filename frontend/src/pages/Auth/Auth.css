@@ -1,23 +1,53 @@
 .auth-container {
   width: 100%;
-  height: 100vh;
+  height: 100% !important;
   display: flex;
-  flex-direction :column;
+  flex-direction: row; /* بدل column */
   justify-content: center;
   align-items: center;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg,#141e30,#243b55);
+  background: linear-gradient(135deg,#1c314e,#243b55);
+  gap: 40px; /* مسافة بين اليسار واليمين */
 }
 
+
+.auth-left {
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.auth-left img {
+  padding:10px;
+  margin:10px;
+  width: 100%;
+  height: auto;
+  margin-bottom:20px;
+  object-fit: contain;
+  mix-blend-mode:lighten;
+  
+
+}
 
 .auth-brand {
-  text-align: center;
-  font-size: 40px;
+  font-size: 50px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #0d1e36; 
+  color: #d3bb9cff;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  letter-spacing: 1px;
 }
 
+/* القسم اليميني (بوكس التسجيل/الدخول) */
+.auth-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .account-type input[type="radio"] {
   appearance: none;
@@ -26,7 +56,7 @@
   margin-right: 6px;
   width: 18px;
   height: 18px;
-  border: 2px solid #0a0a0a; /* لون الخط الخارجي */
+  border: 2px solid #0a0a0a;
   border-radius: 50%;
   cursor: pointer;
   position: relative;
@@ -38,14 +68,14 @@
   width: 10px;
   height: 10px;
   background-color: #417f0a;
- border-radius: 100%;
+  border-radius: 100%;
   top: 3px;
   left: 3px;
-  
 }
+
 .auth-box {
-     box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.18);
-  background: #7b756aeb;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.18);
+  background:#7a7d7e;
   backdrop-filter: blur(12px);
   padding: 40px;
   width: 350px;
@@ -57,6 +87,7 @@
   position: relative;
   z-index: 1;
 }
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -73,7 +104,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
- 
 }
 
 .auth-input {
@@ -84,7 +114,6 @@
   background: #eef3ff;
   color:#070707;
   font-size: 15px;
-  position: relative;
   cursor: text !important;
   z-index: 5;
 }
@@ -105,7 +134,7 @@
 }
 
 .auth-btn:hover {
-    background: #112945;
+  background: #112945;
 }
 
 .auth-switch {

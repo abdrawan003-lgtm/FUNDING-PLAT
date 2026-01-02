@@ -1,7 +1,10 @@
- .footer { padding: 10px;
-   background: linear-gradient(135deg,#141e30,#243b55);
+ .footer {
+   background: linear-gradient(135deg,#1c314e,#243b55);
      color: white;
       text-align: center;
       margin:1px;
       font-size: 1rem;
+     /* position: fixed; */
+     /* bottom:0; */
+     
      }

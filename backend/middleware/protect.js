@@ -13,7 +13,10 @@ const protect = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    req.userId = decoded.id;
+    // ✅ الصحيح: نعرّف req.user ككائن
+    req.user = {
+      id: decoded.id,
+    };
 
     next();
   } catch (err) {

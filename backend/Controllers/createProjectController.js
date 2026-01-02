@@ -2,7 +2,7 @@ export const createProject = async (req, res) => {
   try {
     const { title, description, image } = req.body;
 
-    const project = await Project.create({
+    const project = awaitreq.user._id ({
       title,
       description,
       image,

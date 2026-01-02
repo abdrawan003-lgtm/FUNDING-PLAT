@@ -1,9 +1,63 @@
 .project-card {
   background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+   overflow: hidden;
+  width: 150%;
+  border-radius: 20px;
+
+ max-width: 320px;
+  box-shadow: 0 12px 28px rgba(165, 163, 163, 0.45);
   transition: .3s;
+ 
+
+}
+.project-owner {
+  font-size: 14px;
+  color: #000000;
+}
+
+.owner-name {
+  color: #081d64;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.owner-name:hover {
+  text-decoration: underline;
+}
+.like-btn {
+  margin-top: 12px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: none;
+  background: #1f2933;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.like-btn.active {
+  background: #871010;
+  color: #020617;
+}
+
+.like-section span {
+  margin-left: 8px;
+  font-weight: bold;
+  color: #333; /* هذا لون أغمق من الرمادي الافتراضي */
+}
+
+.project-details-image {
+  width: 50%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+.project-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .project-card:hover {
@@ -18,19 +72,33 @@
 }
 
 .project-info {
-  padding: 15px;
+  padding: 10px;
+  
 }
 
 .project-info h3 {
+margin-bottom: 35px;
   font-size: 18px;
+ text-align: center;
   font-weight: 600;
   color: #0d1418;
-  margin-bottom: 6px;
+ 
 }
 
 .project-info p {
-  color: #333;
+  color: #181717;
   margin-bottom: 10px;
+}
+
+.project-info .goal {
+  color: #000; /* الهدف بلون أسود داكن */
+  font-weight: 600;
+}
+
+
+.project-info .desc {
+  color: #242323; /* الهدف بلون أسود داكن */
+  font-weight: 600;
 }
 
 /* حالات المشروع */

@@ -7,6 +7,51 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     accountType: { type: String, enum: ["supporter", "requester"], required: true },
+      isVerified: { type: Boolean, default: false },
+  verificationToken: { type: String },
+  
+  savedProjects: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Project",
+    }
+  ],
+  
+
+type: {
+  type: String,
+  enum: ["personal", "company", "organization", "government"],
+  default: "personal"
+},
+isSupporter: {
+  type: Boolean,
+  default: false, // غير داعم بشكل افتراضي
+},
+notifications: [
+  {
+    type: {
+      type: String,
+        enum: ["like", "activity", "save"],
+    },
+    message: String,
+    project: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Project",
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+  },
+],
+
+  interests: [
+  {
+    name: String,
+    weight: { type: Number, default: 1 },
+  },
+],
+
   },
   { timestamps: true }
 );

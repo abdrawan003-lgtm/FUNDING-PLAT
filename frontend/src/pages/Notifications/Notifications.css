@@ -1,53 +1,78 @@
-.notifications-container {
+.notifications-page {
+  max-width: 900px;
+  margin: 0 auto;
   padding: 20px;
-  max-width: 600px;
-  margin: auto;
-  direction: rtl;
-  color: #12253e;
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
+  color: #1b1a1a;
 }
 
-.notifications-title {
+.notifications-page h2 {
   text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #1a1a1a;
+}
+
+.notifications-section {
+  margin-bottom: 40px;
+}
+
+.notifications-section h3 {
+  font-size: 22px;
   margin-bottom: 15px;
+  color: #222;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 5px;
 }
 
-.tabs {
+.notifications-list {
   display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 20px;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.tab-btn {
-  padding: 8px 15px;
-  border: 1px solid #12253e;
-  background: white;
-  color: #12253e;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.tab-btn:hover {
-  background: #12253e;
-  color: #fff;
-}
-
-.tab-btn.active {
-  background: #12253e;
-  border: none;
-  color: white;
-}
-
-.card {
-  padding: 12px;
-  margin-bottom: 10px;
-  background: #f5f5f5;
+.notification-box {
+  background-color: #7a7d7e;
   border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 12px 28px rgba(165, 163, 163, 0.45);
+  
+  transition: transform 0.2s;
 }
 
-.time {
+.notification-box:hover {
+  transform: translateY(-2px);
+}
+
+.notification-box p {
+  margin: 5px 0;
+  font-size: 16px;
+  color:#ffff;
+  font-weight: 700;
+}
+
+.notification-box small {
+  font-weight: 600;
   font-size: 12px;
-  color: #555;
+  color: #3b3a3a;
+}
+
+/* Saved Projects Cards */
+.notifications-section .notification-box p {
+  font-weight: 900;
+}
+
+.notifications-section .notification-box span {
+  font-style: italic;
+  color: #461160;
+}
+
+.notifications-section .notification-box p.description {
+  font-size: 14px;
+  color: #5c1b1b;
+}
+
+.notifications-section .notification-box p.goal {
+  font-weight: bold;
+  color: #1a73e8;
 }
